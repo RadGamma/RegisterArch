@@ -14,8 +14,11 @@ public class SqlConnect {
   private PreparedStatement preparedStatement = null;
   private ResultSet resultSet = null;
 
-  public void readDataBase() throws Exception {
+  public void readDataBase(String[] csvInput) throws Exception {
     try {
+      // print pass arg	
+    	System.out.println("csvInput: " + csvInput[3]);	
+    	
       // This will load the MySQL driver, each DB has its own driver
       Class.forName("com.mysql.jdbc.Driver");
       // Setup the connection with the DB
@@ -34,13 +37,15 @@ public class SqlConnect {
       preparedStatement = connect
           .prepareStatement("insert into JRegister (Register_Date,Register_Detail,Register_Pos_Value,"
           		+ "Register_Neg_Value,Register_Balance,Purchase_Code) values (?,?,?,?,?,?);");
+      
+      
       // Parameters start with 1
-      preparedStatement.setString(1, "99/99/9999");
-      preparedStatement.setString(2, "Cheese");
-      preparedStatement.setDouble(3, 00.00);
-      preparedStatement.setDouble(4, 00.00);
-      preparedStatement.setDouble(5, 00.00);
-      preparedStatement.setString(6, "002");
+      preparedStatement.setString(1, csvInput[0]);
+      preparedStatement.setString(2, csvInput[2]);
+      preparedStatement.setDouble(3, Double.parseDouble(csvInput[5]));
+      preparedStatement.setDouble(4, Double.parseDouble(csvInput[4]));
+      preparedStatement.setDouble(5, Double.parseDouble(csvInput[6]));
+      preparedStatement.setString(6, csvInput[1]);
       preparedStatement.executeUpdate();
 
       //preparedStatement = connect

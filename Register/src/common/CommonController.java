@@ -11,14 +11,15 @@ public class CommonController {
   public static void main(String[] args) throws Exception {
 	  
 	// start of insert and select   
-	  SqlConnect dao = new SqlConnect();
-    dao.readDataBase();
+	SqlConnect dao = new SqlConnect();
+    //dao.readDataBase();
     
     // start csv file reader
     String csvFile = "C:/Users/Frazee/Desktop/BankPhase2/Huntington_TotalFile.csv";
     BufferedReader br = null;
     String line = "";
     String cvsSplitBy = ",";
+    String [] input = null;
 
     try {
 
@@ -26,12 +27,15 @@ public class CommonController {
         while ((line = br.readLine()) != null) {
 
             // use comma as separator
-            String[] country = line.split(cvsSplitBy);
-
-            System.out.println("Country [code= " + country[3] + " , name=" + country[5] + "]");
+            String [] csvInput = line.split(cvsSplitBy);
+            input = csvInput.clone();
+            
+            System.out.println("Country " + csvInput[0]) ;
 
         }
 
+        dao.readDataBase(input);
+        
     } catch (FileNotFoundException e) {
         e.printStackTrace();
     } catch (IOException e) {
