@@ -18,7 +18,7 @@ public class CompletionTxt {
  
 	static Properties mailServerProperties;
 	static Session getMailSession;
-	static MimeMessage generateMailMessage;
+	static MimeMessage generateMailMessage;  
  
 	public static void main(String args[]) throws AddressException, MessagingException {
 		generateAndSendEmail();
