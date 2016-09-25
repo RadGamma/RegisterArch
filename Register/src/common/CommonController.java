@@ -31,10 +31,10 @@ public class CommonController {
             input = csvInput.clone();
             
             System.out.println("Country " + csvInput[0]) ;
-
+            dao.readDataBase(input);
         }
 
-        dao.readDataBase(input);
+       // dao.readDataBase(input);
         
     } catch (FileNotFoundException e) {
         e.printStackTrace();

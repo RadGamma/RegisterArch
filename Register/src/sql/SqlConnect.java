@@ -39,12 +39,32 @@ public class SqlConnect {
           		+ "Register_Neg_Value,Register_Balance,Purchase_Code) values (?,?,?,?,?,?);");
       
       
+      double pos; 
+      double neg; 
+      double bal; 
+      
+      if (csvInput[5].isEmpty()){
+    	  pos = 0.00;
+      } else {
+    	  pos = Double.parseDouble(csvInput[5]);
+      };
+      if (csvInput[4].isEmpty()){
+    	  neg = 0.00;
+      }  else {
+    	  neg = Double.parseDouble(csvInput[4]);
+      };
+      if (csvInput[6].isEmpty()){
+    	  bal = 0.00;
+      }  else {
+    	  bal = Double.parseDouble(csvInput[6]);
+      };
+      
       // Parameters start with 1
       preparedStatement.setString(1, csvInput[0]);
       preparedStatement.setString(2, csvInput[2]);
-      preparedStatement.setDouble(3, Double.parseDouble(csvInput[5]));
-      preparedStatement.setDouble(4, Double.parseDouble(csvInput[4]));
-      preparedStatement.setDouble(5, Double.parseDouble(csvInput[6]));
+      preparedStatement.setDouble(3, pos);
+      preparedStatement.setDouble(4, neg);
+      preparedStatement.setDouble(5, bal);
       preparedStatement.setString(6, csvInput[1]);
       preparedStatement.executeUpdate();
 
