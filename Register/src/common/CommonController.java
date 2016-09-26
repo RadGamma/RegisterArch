@@ -34,7 +34,6 @@ public class CommonController {
             dao.readDataBase(input);
         }
 
-       // dao.readDataBase(input);
         
     } catch (FileNotFoundException e) {
         e.printStackTrace();
