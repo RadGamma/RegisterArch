@@ -24,10 +24,10 @@ public class Encode {
  
     private static final boolean IS_CHUNKED = true;
  
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) throws Exception { 
  
 
-    	String localDirectory = "C:/Users/Frazee/Desktop/BankStatements/";
+    	String localDirectory = "C:/Users/Frazee/Desktop/BankStatements/";  
 
         Iterator it = FileUtils.iterateFiles(new File(localDirectory),
         			  null, true);
