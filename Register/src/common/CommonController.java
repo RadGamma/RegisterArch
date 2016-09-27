@@ -1,6 +1,7 @@
 package common;
 
 import sql.SqlConnect;
+import email.CompletionTxt;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +13,7 @@ public class CommonController {
 	  
 	// start of insert and select   
 	SqlConnect dao = new SqlConnect();
+	CompletionTxt txt = new CompletionTxt();  
     //dao.readDataBase();
     
     // start csv file reader
@@ -39,7 +41,7 @@ public class CommonController {
         
         System.out.println("Balance " + input[6]) ;
         
-        txtBal
+        txt.generateAndSendEmail(txtBal); 
         
     } catch (FileNotFoundException e) {
         e.printStackTrace();

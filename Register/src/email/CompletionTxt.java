@@ -20,12 +20,9 @@ public class CompletionTxt {
 	static Session getMailSession;
 	static MimeMessage generateMailMessage;  
  
-	public static void main(String args[], String txtBal) throws AddressException, MessagingException {
-		generateAndSendEmail(txtBal);
+	public void generateAndSendEmail(String txtBal) throws AddressException, MessagingException {
+		
 		System.out.println("\n\n ===> Your Java Program has just sent an Email successfully. Check your email..");
-	}
- 
-	public static void generateAndSendEmail(String txtBal) throws AddressException, MessagingException {
  
 		// Step1
 		System.out.println("\n 1st ===> setup Mail Server Properties..");
