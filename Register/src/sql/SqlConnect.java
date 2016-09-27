@@ -8,12 +8,56 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
+
 public class SqlConnect {
   private Connection connect = null;
   private Statement statement = null;
   private PreparedStatement preparedStatement = null;
   private ResultSet resultSet = null;
 
+  
+  public void setupPersistance() throws Exception {
+	  try {
+      Class.forName("com.mysql.jdbc.Driver");
+      // Setup the connection with the DB
+      connect = DriverManager
+          .getConnection("jdbc:mysql://192.168.0.11:3306/test");
+             // + "user=sqluser&password=sqluserpw");
+
+      // Statements allow to issue SQL queries to the database
+      statement = connect.createStatement();
+      
+      String dropTableSql = "DROP TABLE JRegister ";
+      // Result set get the result of the SQL query
+      
+      String createTableSql = "CREATE TABLE JRegister"
+        		+ "(Register_Id INT AUTO_INCREMENT NOT NULL,"
+        		+ "Register_Date VARCHAR(10) NOT NULL,"
+        		+ "Register_Detail VARCHAR(255) NOT NULL,"
+        		+ "Register_Pos_Value DECIMAL(11,2) NOT NULL,"
+        		+ "Register_Neg_Value DECIMAL(11,2) NOT NULL,"
+        		+ "Register_Balance DECIMAL(11,2) NOT NULL,"
+        		+ "Purchase_Code VARCHAR(255) NOT NULL,"
+        		+ "Date_Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
+        		+ "PRIMARY KEY (Register_Id))";
+      
+      // resultSet = statement
+      //    .executeQuery("SELECT * from JRegister");
+      // writeResultSet(resultSet);
+
+      // drops the table 
+      statement.executeUpdate(dropTableSql);
+      System.out.println("Table dropped ");
+      // create table 
+      statement.executeUpdate(createTableSql);
+      System.out.println("Table Created ");	  
+      
+  	} catch (Exception e) {
+      throw e;
+    } finally {
+      close();
+    }
+  }
   public void readDataBase(String[] csvInput) throws Exception {
     try {
         
@@ -30,26 +74,6 @@ public class SqlConnect {
 
       // Statements allow to issue SQL queries to the database
       statement = connect.createStatement();
-      
-      resultSet = statement
-    	  .executeQuery("DROP TABLE JRegister");
-      // Result set get the result of the SQL query
-      
-      resultSet = statement
-          .executeQuery("CREATE TABLE JRegister"
-        		+ "Register_Id INT AUTO_INCREMENT NOT NULL,"
-        		+ "Register_Date VARCHAR(10) NOT NULL,"
-        		+ "Register_Detail VARCHAR(255) NOT NULL,"
-        		+ "Register_Pos_Value DECIMAL(11,2) NOT NULL,"
-        		+ "Register_Neg_Value DECIMAL(11,2) NOT NULL,"
-        		+ "Register_Balance DECIAML(11,2) NOT NULL,"
-        		+ "Purchase_Code VARCHAR(255) NOT NULL,"
-        		+ "Date_Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
-        		+ "PRIMARY KEY (Register_Id");
-      
-      resultSet = statement
-          .executeQuery("SELECT * from JRegister");
-     // writeResultSet(resultSet);
 
       // PreparedStatements can use variables and are more efficient
       preparedStatement = connect

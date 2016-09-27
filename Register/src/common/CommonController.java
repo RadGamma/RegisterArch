@@ -30,6 +30,8 @@ public class CommonController {
 
         System.out.println("Entering SqlConnect ") ;
         
+        dao.setupPersistance();
+        
         while ((line = br.readLine()) != null) {
 
             // use comma as separator
@@ -39,6 +41,7 @@ public class CommonController {
             dao.readDataBase(input);
         }
         
+        txtBal = input[6]; 
         System.out.println("Balance " + input[6]) ;
         
         txt.generateAndSendEmail(txtBal); 
