@@ -20,20 +20,26 @@ public class CommonController {
     String line = "";
     String cvsSplitBy = ",";
     String [] input = null;
+    String txtBal = null;
 
     try {
 
         br = new BufferedReader(new FileReader(csvFile));
+
+        System.out.println("Entering SqlConnect ") ;
+        
         while ((line = br.readLine()) != null) {
 
             // use comma as separator
             String [] csvInput = line.split(cvsSplitBy);
             input = csvInput.clone();
             
-            System.out.println("Country " + csvInput[0]) ;
             dao.readDataBase(input);
         }
-
+        
+        System.out.println("Balance " + input[6]) ;
+        
+        txtBal
         
     } catch (FileNotFoundException e) {
         e.printStackTrace();

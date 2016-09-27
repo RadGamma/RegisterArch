@@ -16,8 +16,10 @@ public class SqlConnect {
 
   public void readDataBase(String[] csvInput) throws Exception {
     try {
-      // print pass arg	
-    	System.out.println("csvInput: " + csvInput[3]);	
+        
+      double pos; 
+      double neg; 
+      double bal; 	
     	
       // This will load the MySQL driver, each DB has its own driver
       Class.forName("com.mysql.jdbc.Driver");
@@ -28,20 +30,31 @@ public class SqlConnect {
 
       // Statements allow to issue SQL queries to the database
       statement = connect.createStatement();
-      // Result set get the result of the SQL query
+      
       resultSet = statement
-          .executeQuery("select * from JRegister");
+    	  .executeQuery("DROP TABLE JRegister");
+      // Result set get the result of the SQL query
+      
+      resultSet = statement
+          .executeQuery("CREATE TABLE JRegister"
+        		+ "Register_Id INT AUTO_INCREMENT NOT NULL,"
+        		+ "Register_Date VARCHAR(10) NOT NULL,"
+        		+ "Register_Detail VARCHAR(255) NOT NULL,"
+        		+ "Register_Pos_Value DECIMAL(11,2) NOT NULL,"
+        		+ "Register_Neg_Value DECIMAL(11,2) NOT NULL,"
+        		+ "Register_Balance DECIAML(11,2) NOT NULL,"
+        		+ "Purchase_Code VARCHAR(255) NOT NULL,"
+        		+ "Date_Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
+        		+ "PRIMARY KEY (Register_Id");
+      
+      resultSet = statement
+          .executeQuery("SELECT * from JRegister");
      // writeResultSet(resultSet);
 
       // PreparedStatements can use variables and are more efficient
       preparedStatement = connect
           .prepareStatement("insert into JRegister (Register_Date,Register_Detail,Register_Pos_Value,"
           		+ "Register_Neg_Value,Register_Balance,Purchase_Code) values (?,?,?,?,?,?);");
-      
-      
-      double pos; 
-      double neg; 
-      double bal; 
       
       if (csvInput[5].isEmpty()){
     	  pos = 0.00;
@@ -68,6 +81,9 @@ public class SqlConnect {
       preparedStatement.setString(6, csvInput[1]);
       preparedStatement.executeUpdate();
 
+      //write out in single 
+      System.out.println("Insert made " + csvInput[0] + ", " + csvInput[2] + ", " + pos + ", " + neg + ", " + bal);
+      
       //preparedStatement = connect
       //    .prepareStatement("SELECT myuser, webpage, datum, summary, COMMENTS from feedback.comments");
       //resultSet = preparedStatement.executeQuery();
@@ -81,8 +97,8 @@ public class SqlConnect {
       
      // resultSet = statement
      // .executeQuery("select * from feedback.comments");
-      writeRow(resultSet);
-      writeMetaData(resultSet);
+     // writeRow(resultSet);
+     // writeMetaData(resultSet);
       
     } catch (Exception e) {
       throw e;
@@ -93,12 +109,11 @@ public class SqlConnect {
   }
 
   private void writeRow(ResultSet resultSet) throws SQLException {
-	  //   Now get some metadata from the database
+	  // Now get some metadata from the database
 	  // Result set get the result of the SQL query
 	    
-	  System.out.println("The columns in the table are: ");
-	    
-	  System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
+	  //System.out.println("The columns in the table are: ");	    
+	  //System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
 	  while  (resultSet.next()){
 	    System.out.println("Row  "+ resultSet.getString("Register_Balance"));
 	    System.out.println("Row  "+ resultSet.getString("Register_Date"));

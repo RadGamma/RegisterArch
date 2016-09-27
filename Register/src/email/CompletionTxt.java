@@ -20,12 +20,12 @@ public class CompletionTxt {
 	static Session getMailSession;
 	static MimeMessage generateMailMessage;  
  
-	public static void main(String args[]) throws AddressException, MessagingException {
-		generateAndSendEmail();
+	public static void main(String args[], String txtBal) throws AddressException, MessagingException {
+		generateAndSendEmail(txtBal);
 		System.out.println("\n\n ===> Your Java Program has just sent an Email successfully. Check your email..");
 	}
  
-	public static void generateAndSendEmail() throws AddressException, MessagingException {
+	public static void generateAndSendEmail(String txtBal) throws AddressException, MessagingException {
  
 		// Step1
 		System.out.println("\n 1st ===> setup Mail Server Properties..");
@@ -42,7 +42,7 @@ public class CompletionTxt {
 		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("6144390221@messaging.sprintpcs.com"));
 		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("test2@crunchify.com"));
 		generateMailMessage.setSubject("Greetings from Crunchify..");
-		String emailBody = "Test email by Crunchify.com JavaMail API example. " + "<br><br> Regards, <br>Crunchify Admin";
+		String emailBody = "Test email by Crunchify.com " + txtBal +"JavaMail API example. " + "<br><br> Regards, <br>Crunchify Admin";
 		generateMailMessage.setContent(emailBody, "text/html");
 		System.out.println("Mail Session has been created successfully..");
  
