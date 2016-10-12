@@ -38,10 +38,10 @@ public class Encode {
         	System.out.println("File " + f + " File Name " + f.getName() + " File Name No EXT " + filename2 );
      	
             /* Encode a file and write the encoded output to a text file. */
-            encode(localDirectory+filename, "//FLETCHER/share/Files/BankStmts/" + filename2 + ".txt", IS_CHUNKED);
+            //encode(localDirectory+filename, "//FLETCHER/share/Files/BankStmts/" + filename2 + ".txt", IS_CHUNKED);
        
             /* Decode a file and write the decoded file to file system */
-            //   decode("//FLETCHER/share/Files/test.txt", "//FLETCHER/share/Files/retrieve.pdf");
+               decode("//FLETCHER/share/Files/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
       	
     	}
 

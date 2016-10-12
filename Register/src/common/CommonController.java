@@ -44,7 +44,7 @@ public class CommonController {
         txtBal = input[6]; 
         System.out.println("Balance " + input[6]) ;
         
-        txt.generateAndSendEmail(txtBal); 
+        txt.generateAndSendEmail(txtBal);
         
     } catch (FileNotFoundException e) {
         e.printStackTrace();
