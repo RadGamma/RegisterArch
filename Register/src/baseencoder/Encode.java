@@ -41,9 +41,12 @@ public class Encode {
             //encode(localDirectory+filename, "//FLETCHER/share/Files/BankStmts/" + filename2 + ".txt", IS_CHUNKED);
        
             /* Decode a file and write the decoded file to file system */
-               decode("//FLETCHER/share/Files/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
+              // decode("//FLETCHER/share/Files/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
       	
     	}
+    	
+    	 decode("//FLETCHER/share/Files/BankStmts/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
+       	
 
     }
  
