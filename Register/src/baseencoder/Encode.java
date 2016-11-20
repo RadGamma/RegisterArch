@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
+import java.awt.Desktop;
+
 import org.apache.commons.io.FileUtils; 
  
 import org.apache.commons.io.FilenameUtils;
@@ -46,7 +48,18 @@ public class Encode {
     	}
     	
     	 decode("//FLETCHER/share/Files/BankStmts/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
-       	
+    	 
+    	 
+    	 
+    	 // opens the pdf file frp, the app 
+    	 if (Desktop.isDesktopSupported()) {
+    		    try {
+    		        File myFile = new File("C:/Users/Frazee/Desktop/BankStatements/test.pdf");
+    		        Desktop.getDesktop().open(myFile);
+    		    } catch (IOException ex) {
+    		        // no application registered for PDFs
+    		    }
+    	 }
 
     }
  
