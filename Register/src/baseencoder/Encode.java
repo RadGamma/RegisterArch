@@ -20,6 +20,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.codec.binary.Base64;
 
+import sql.SqlConnect;
+
 
 
 public class Encode {
@@ -28,10 +30,19 @@ public class Encode {
  
     public static void main(String args[]) throws Exception { 
  
+    	int a = 1;
+    	
+    	String i = SqlConnect.pullDocLink(a);
+    	String post = i.substring(33);
+    	
+    	System.out.println("main " + i);
 
     	String localDirectory = "C:/Users/Frazee/Desktop/BankStatements/";  
-
-        Iterator it = FileUtils.iterateFiles(new File(localDirectory),
+    	
+    	
+    	
+    	
+    	Iterator it = FileUtils.iterateFiles(new File(localDirectory),
         			  null, true);
     	while (it.hasNext()) {
     		File f = (File) it.next();        	       
@@ -43,22 +54,22 @@ public class Encode {
             //encode(localDirectory+filename, "//FLETCHER/share/Files/BankStmts/" + filename2 + ".txt", IS_CHUNKED);
        
             /* Decode a file and write the decoded file to file system */
-              // decode("//FLETCHER/share/Files/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
+            //decode("//FLETCHER/share/Files/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
       	
     	}
     	
-    	 decode("//FLETCHER/share/Files/BankStmts/01.10.15.02.09.15.txt", "C:/Users/Frazee/Desktop/BankStatements/test.pdf");
+    	 decode(i, "C:/Users/Frazee/Desktop/BankStatements/test"+ post +".pdf");
     	 
     	 
     	 
     	 // opens the pdf file frp, the app 
     	 if (Desktop.isDesktopSupported()) {
-    		    try {
-    		        File myFile = new File("C:/Users/Frazee/Desktop/BankStatements/test.pdf");
-    		        Desktop.getDesktop().open(myFile);
-    		    } catch (IOException ex) {
-    		        // no application registered for PDFs
-    		    }
+    	 	    try {
+    	 	        File myFile = new File("C:/Users/Frazee/Desktop/BankStatements/test"+ post +".pdf");
+    	 	        Desktop.getDesktop().open(myFile);
+    	 	    } catch (IOException ex) {
+    	 	        // no application registered for PDFs
+    	 	    }
     	 }
 
     }

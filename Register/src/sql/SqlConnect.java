@@ -10,11 +10,57 @@ import java.util.Date;
 
 
 public class SqlConnect {
-  private Connection connect = null;
-  private Statement statement = null;
-  private PreparedStatement preparedStatement = null;
-  private ResultSet resultSet = null;
+  private static Connection connect = null;
+  private static Statement statement = null;
+  private static PreparedStatement preparedStatement = null;
+  private static ResultSet resultSet = null;
+  
+  static String doc_key = null;
 
+  
+  public static String pullDocLink(int id) throws Exception {
+	  
+	  System.out.println("entering pullDocLink" + id);
+	  docLinkStmt(id);
+	  
+      return doc_key;
+  }
+
+  public static void docLinkStmt(int id) throws Exception {
+
+	  System.out.println("entering docLinkStmt" + id);
+	  
+      Class.forName("com.mysql.jdbc.Driver");
+      // Setup the connection with the DB
+      connect = DriverManager
+          .getConnection("jdbc:mysql://192.168.0.7:3306/test");
+             // + "user=sqluser&password=sqluserpw");
+
+      // Statements allow to issue SQL queries to the database
+      
+      String sql = "SELECT Doc_Link_Loc FROM Doc_Link_Table WHERE Link_Id = ?";
+      preparedStatement = connect.prepareStatement(sql);
+      
+      
+      // PreparedStatements can use variables and are more efficient
+      //String sqlStatement = "SELECT Doc_Link_Loc FROM Doc_Link_Table WHERE Link_Id = ?";
+ 
+      
+      preparedStatement.setInt(1,id);
+      
+      ResultSet rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			String docu_key = rs.getString("Doc_Link_Loc");
+			doc_key = docu_key;
+			System.out.println("doc key" + docu_key );
+		}
+      
+	  System.out.println("leaving docLinkStmt" + doc_key );
+      
+      close();
+      
+  }
   
   public void setupPersistance() throws Exception {
 	  try {
@@ -177,7 +223,7 @@ public class SqlConnect {
   }
 
   // You need to close the resultSet
-  private void close() {
+  private static void close() {
     try {
       if (resultSet != null) {
         resultSet.close();
