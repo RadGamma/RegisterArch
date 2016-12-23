@@ -29,6 +29,20 @@ public class SimpleReport {
 		e.printStackTrace();
 		return;
 	}
+	
+	JasperReportBuilder AutoReport = DynamicReports.report();//a new report
+	AutoReport
+	  .columns(
+	      Columns.column("Database Id", "Auto_Bill_Id", DataTypes.integerType()),
+	      Columns.column("Desc", "Auto_Trans_Description", DataTypes.stringType()),
+	      Columns.column("Payed", "Auto_Payed", DataTypes.bigDecimalType()),
+	      Columns.column("Bal Owed", "Auto_Bal_Owed", DataTypes.bigDecimalType()))
+	  .title(//title of the report
+	      Components.text("SimpleReportExample")
+		  .setHorizontalAlignment(HorizontalAlignment.CENTER))
+		  .pageFooter(Components.pageXofY())//show page number on the page footer
+		  .setDataSource("SELECT Auto_Bill_Id, Auto_Trans_Description, Auto_Payed, Auto_Bal_Owed FROM Auto_Bill_Table",
+                                  connection);
 
 	JasperReportBuilder report = DynamicReports.report();//a new report
 	report
@@ -47,9 +61,11 @@ public class SimpleReport {
 	try {
                 //show the report
 		report.show();
+		AutoReport.show();
 
                 //export the report to a pdf file
 		report.toPdf(new FileOutputStream("c:/report.pdf"));
+		AutoReport.toPdf(new FileOutputStream("c:/AutoReport.pdf"));
 	} catch (DRException e) {
 		e.printStackTrace();
 	} catch (FileNotFoundException e) {

@@ -6,6 +6,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CommonController {
 	
@@ -37,7 +41,25 @@ public class CommonController {
             // use comma as separator
             String [] csvInput = line.split(cvsSplitBy);
             input = csvInput.clone();
+ 
+ // ----------------------- code for insert into sub table  
             
+            String startDate="12/01/2016";
+            SimpleDateFormat sdf1 = new SimpleDateFormat("mm/dd/yyyy");
+            java.util.Date date = sdf1.parse(startDate);
+            java.sql.Date StartDate = new java.sql.Date(date.getTime());
+            
+            String inputDate = input[0];
+            java.util.Date inputdate = sdf1.parse(inputDate);
+            java.sql.Date InputDate = new java.sql.Date(inputdate.getTime());
+            
+            if (InputDate.after(StartDate)) {
+            	if (input[2].equals("Seterus  Inc.    Payment")){
+            	    System.out.println("I worte to the sub") ;
+            		dao.insertMortgage(input);
+            	}	
+            }
+ //-----------------------------------------------------------           
             dao.readDataBase(input);
         }
         
