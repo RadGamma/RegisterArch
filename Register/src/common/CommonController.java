@@ -42,7 +42,7 @@ public class CommonController {
             String [] csvInput = line.split(cvsSplitBy);
             input = csvInput.clone();
  
- // ----------------------- code for insert into sub table  
+ /* ----------------------- code for insert into sub table  
             
             String startDate="12/01/2016";
             SimpleDateFormat sdf1 = new SimpleDateFormat("mm/dd/yyyy");
@@ -59,7 +59,7 @@ public class CommonController {
             		dao.insertMortgage(input);
             	}	
             }
- //-----------------------------------------------------------           
+ ------------------------------------------------------------           */
             dao.readDataBase(input);
         }
         
