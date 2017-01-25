@@ -21,7 +21,7 @@ public class SimpleReport {
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
 		connection = DriverManager.getConnection(
-                    "jdbc:mysql://192.168.0.7:3306/test");
+                    "jdbc:mysql://192.168.0.11:3306/test");
 	} catch (SQLException e) {
 		e.printStackTrace();
 		return;
