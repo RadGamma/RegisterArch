@@ -33,7 +33,7 @@ public class SqlConnect {
       Class.forName("com.mysql.jdbc.Driver");
       // Setup the connection with the DB
       connect = DriverManager
-          .getConnection("jdbc:mysql://192.168.0.7:3306/test");
+          .getConnection("jdbc:mysql://192.168.0.11:3306/test");
              // + "user=sqluser&password=sqluserpw");
 
       // Statements allow to issue SQL queries to the database
@@ -67,7 +67,7 @@ public class SqlConnect {
       Class.forName("com.mysql.jdbc.Driver");
       // Setup the connection with the DB
       connect = DriverManager
-          .getConnection("jdbc:mysql://192.168.0.7:3306/test");
+          .getConnection("jdbc:mysql://192.168.0.11:3306/test");
              // + "user=root&password=8500Nuthat");
 
       // Statements allow to issue SQL queries to the database
@@ -115,7 +115,7 @@ public class SqlConnect {
       Class.forName("com.mysql.jdbc.Driver");
       // Setup the connection with the DB
       connect = DriverManager
-          .getConnection("jdbc:mysql://192.168.0.7:3306/test");
+          .getConnection("jdbc:mysql://192.168.0.11:3306/test");
              // + "user=sqluser&password=sqluserpw");
 
       // Statements allow to issue SQL queries to the database
@@ -188,7 +188,7 @@ public class SqlConnect {
 	      Class.forName("com.mysql.jdbc.Driver");
 	      // Setup the connection with the DB
 	      connect = DriverManager
-	          .getConnection("jdbc:mysql://192.168.0.7:3306/test");
+	          .getConnection("jdbc:mysql://192.168.0.11:3306/test");
 	             // + "user=sqluser&password=sqluserpw");
 
 	      // Statements allow to issue SQL queries to the database
