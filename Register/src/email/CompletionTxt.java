@@ -1,5 +1,7 @@
-package email;
+package webapp;
  
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -18,7 +20,24 @@ public class CompletionTxt {
  
 	static Properties mailServerProperties;
 	static Session getMailSession;
-	static MimeMessage generateMailMessage;  
+	static MimeMessage generateMailMessage;
+	
+	static String doc_key = null;
+	static String emailConnectStmp = null;
+	static String emailConnectURL = null;
+	static String emailConnectionPWD = null;
+
+	public void config() {
+		Properties prop = new Properties();
+		try {
+		prop.load(new FileInputStream("C:/Users/Frazee/eclipse-workspace/Bookstore/src/resources/properties"));
+		emailConnectStmp = prop.getProperty("emailConnectionStmp");
+		emailConnectURL = prop.getProperty("emailConnectionURL");
+		emailConnectionPWD = prop.getProperty("emailConnectionPWD");
+		} catch (IOException ex) {
+		    ex.printStackTrace();
+		}
+	}
  
 	public void generateAndSendEmail(String txtBal) throws AddressException, MessagingException {
 		
@@ -37,9 +56,9 @@ public class CompletionTxt {
 		getMailSession = Session.getDefaultInstance(mailServerProperties, null);
 		generateMailMessage = new MimeMessage(getMailSession);
 		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("6144390221@messaging.sprintpcs.com"));
-		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("test2@crunchify.com"));
-		generateMailMessage.setSubject("Greetings from Crunchify..");
-		String emailBody = "Test email by Crunchify.com " + txtBal +"JavaMail API example. " + "<br><br> Regards, <br>Crunchify Admin";
+		//generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(""));
+		generateMailMessage.setSubject("Transaction processing completed");
+		String emailBody = "Transaction processing completed, current balance = " + txtBal;
 		generateMailMessage.setContent(emailBody, "text/html");
 		System.out.println("Mail Session has been created successfully..");
  
@@ -49,7 +68,7 @@ public class CompletionTxt {
  
 		// Enter your correct gmail UserID and Password
 		// if you have 2FA enabled then provide App Specific Password
-		transport.connect("smtp.gmail.com", "andrew.frazee@gmail.com", "8500Nuthatch011");
+		transport.connect(emailConnectStmp, "emailConnectURL", "emailConnectionPWD");
 		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
 		transport.close();
 	}

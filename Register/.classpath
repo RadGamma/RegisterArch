@@ -11,15 +11,14 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Frazee/Desktop/mysql-connector-java-5.1.35/mysql-connector-java-5.1.35-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Frazee/Desktop/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Frazee/Desktop/commons-codec-1.10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Frazee/Desktop/Javax.mail/javax.mail(1).jar"/>
-	<classpathentry kind="lib" path="C:/Users/Frazee/Desktop/mySQL/mysql-connector-java-5.1.40.zip"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Frazee/mysql-connector-java-5.1.44/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Frazee/Desktop/commons-codec-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Frazee/Desktop/javax.mail.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
