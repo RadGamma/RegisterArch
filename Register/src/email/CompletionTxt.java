@@ -1,4 +1,4 @@
-package webapp;
+package email;
  
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,6 +26,7 @@ public class CompletionTxt {
 	static String emailConnectStmp = null;
 	static String emailConnectURL = null;
 	static String emailConnectionPWD = null;
+	static String emailConnectionRecipient = null;
 
 	public void config() {
 		Properties prop = new Properties();
@@ -34,6 +35,7 @@ public class CompletionTxt {
 		emailConnectStmp = prop.getProperty("emailConnectionStmp");
 		emailConnectURL = prop.getProperty("emailConnectionURL");
 		emailConnectionPWD = prop.getProperty("emailConnectionPWD");
+		emailConnectionRecipient = prop.getProperty("emailConnectionRecipient");
 		} catch (IOException ex) {
 		    ex.printStackTrace();
 		}
@@ -55,7 +57,7 @@ public class CompletionTxt {
 		System.out.println("\n\n 2nd ===> get Mail Session..");
 		getMailSession = Session.getDefaultInstance(mailServerProperties, null);
 		generateMailMessage = new MimeMessage(getMailSession);
-		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("6144390221@messaging.sprintpcs.com"));
+		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailConnectionRecipient));
 		//generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(""));
 		generateMailMessage.setSubject("Transaction processing completed");
 		String emailBody = "Transaction processing completed, current balance = " + txtBal;
